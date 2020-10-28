@@ -1,18 +1,18 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 
-<div id="app">
+<div id="{CHANNEL}">
     <img v-if="message" :src="'data:image/jpg;base64,' + message">
     <p v-else>Listening...</p>
 </div>
 
 <style>
-    #app {
+    #{CHANNEL} {
         float: left;
         margin: 5px;
         width: {WIDTH}%;
     }
 
-    #app img {
+    #{CHANNEL} img {
         image-rendering: pixelated;
         width: 100%;
     }
@@ -20,7 +20,7 @@
 
 <script>
     new Vue({
-        el: '#app',
+        el: '#{CHANNEL}',
         data: {
             message: '',
             listener: new BroadcastChannel('{CHANNEL}')

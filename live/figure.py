@@ -4,6 +4,7 @@ import cv2
 import base64
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import numpy as np
+import re
 
 import live
 
@@ -17,7 +18,7 @@ class Figure():
             name = f"Figure{Figure.figure_index}"
 
         self.width = 30
-        self.name = name
+        self.name = re.sub(r'[^a-zA-Z0-9_]', '', name)
         Figure.figure_index += 1
 
         html = figure_template.replace(
