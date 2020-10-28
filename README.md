@@ -72,6 +72,8 @@ for i in range(10):
 <img width="40%" src="https://github.com/svenschultze/Colab-Live-Figures/blob/main/demo/matplotlib.gif?raw=true"/>
 
 ```python
+import live
+import time
 from skimage import io, filters
 import cv2
 img = io.imread("https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/757px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg")
