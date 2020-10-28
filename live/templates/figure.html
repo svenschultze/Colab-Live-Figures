@@ -1,0 +1,32 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+<div id="app">
+    <img v-if="message" :src="'data:image/jpg;base64,' + message">
+    <p v-else>Listening...</p>
+</div>
+
+<style>
+    #app img {
+        image-rendering: pixelated;
+        width: {WIDTH}%;
+    }
+</style>
+
+<script>
+    const listenerChannel = new BroadcastChannel('channel');
+
+    new Vue({
+        el: '#app',
+        data: {
+            message: ''
+        },
+        methods: {
+            onmessage(msg) {
+                this.message = msg.data
+            }
+        },
+        created() {
+            listenerChannel.onmessage = this.onmessage
+        }
+    })
+</script>
