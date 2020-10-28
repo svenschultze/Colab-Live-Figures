@@ -18,8 +18,11 @@ class Figure():
         self.name = name
         Figure.figure_index += 1
 
+        self.display()
+
+    def display(self):
         html = figure_template.replace(
-            "{WIDTH}", str(width)
+            "{WIDTH}", str(self.width)
         ).replace(
             "{CHANNEL}", self.name
         )

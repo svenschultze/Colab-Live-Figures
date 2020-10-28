@@ -9,10 +9,12 @@ broadcast_template = pkgutil.get_data(__name__, "templates/broadcast.js").decode
 
 figures = {}
 
-def figure(name=None, width=30):
+def figure(width=30):
     context = get_current_context()
     if context not in figures.keys():
-        figures[context] = Figure(name, width)
+        figures[context] = Figure(context, width)
+    else:
+        figures[context].display()
 
     return figures[context]
 
