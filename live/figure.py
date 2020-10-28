@@ -18,7 +18,11 @@ class Figure():
         self.name = name
         Figure.figure_index += 1
 
-        html = figure_template.replace("{WIDTH}", str(width))
+        html = figure_template.replace(
+            "{WIDTH}", str(width)
+        ).replace(
+            "{CHANNEL}", self.name
+        )
         display(HTML(html))
 
     def imshow(self, img):
