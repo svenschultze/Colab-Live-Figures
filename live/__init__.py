@@ -1,5 +1,7 @@
 import pkgutil
 from IPython.display import display, Javascript
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+import numpy as np
 import inspect
 
 from live.figure import Figure
@@ -35,3 +37,11 @@ def broadcast(channel, message):
     )
 
     display(Javascript(js))
+
+def figshow(fig):
+    canvas = FigureCanvas(fig)
+    canvas.draw()
+
+    width, height = fig.get_size_inches() * fig.get_dpi()
+    image = np.frombuffer(canvas.tostring_rgb(), dtype='uint8').reshape(int(height), int(width), 3)
+    imshow(image)

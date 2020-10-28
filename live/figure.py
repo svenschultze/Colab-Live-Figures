@@ -2,6 +2,8 @@ import pkgutil
 from IPython.display import display, HTML
 import cv2
 import base64
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+import numpy as np
 
 import live
 
@@ -35,3 +37,12 @@ class Figure():
         base64_url = base64.b64encode(byte_array).decode("utf-8")
 
         live.broadcast(channel=self.name, message=base64_url)
+
+
+    def figshow(self, fig):
+        canvas = FigureCanvas(fig)
+        canvas.draw()
+
+        width, height = fig.get_size_inches() * fig.get_dpi()
+        image = np.frombuffer(canvas.tostring_rgb(), dtype='uint8').reshape(int(height), int(width), 3)
+        self.imshow(image)
