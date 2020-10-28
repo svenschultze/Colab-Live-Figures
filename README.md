@@ -1,5 +1,5 @@
 # Colab-Live-Figures
-Simple Library to display live-updating images in Google Colaboratory
+Simple library to display live-updating images in Google Colaboratory
 
 ## Installation
 ```bash
