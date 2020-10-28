@@ -70,3 +70,16 @@ for i in range(10):
 ```
 
 <img width="40%" src="https://github.com/svenschultze/Colab-Live-Figures/blob/main/demo/matplotlib.gif?raw=true"/>
+
+```python
+from skimage import io, filters
+import cv2
+img = io.imread("https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/757px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg")
+
+for i in range(1, 21, 2):
+    blurred = cv2.GaussianBlur(img, (i, i), 0)
+    live.imshow(blurred)
+    time.sleep(.5)
+```
+
+<img width="40%" src="https://github.com/svenschultze/Colab-Live-Figures/blob/main/demo/blur.gif?raw=true"/>
