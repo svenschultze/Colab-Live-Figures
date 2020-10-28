@@ -7,10 +7,10 @@ Simple library to display live-updating images in Google Colaboratory
 ```
 
 ## Usage
-### Create figure manually
 ```python
 import live
 ```
+### Create figure manually
 To create new figure:
 ```python
 fig = live.Figure(width=40) # 40% width
