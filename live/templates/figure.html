@@ -22,7 +22,8 @@
     new Vue({
         el: '#app',
         data: {
-            message: ''
+            message: '',
+            listener: new BroadcastChannel('{CHANNEL}')
         },
         methods: {
             onmessage(msg) {
@@ -30,8 +31,7 @@
             }
         },
         created() {
-            listenerChannel = new BroadcastChannel('{CHANNEL}');
-            listenerChannel.onmessage = this.onmessage
+            this.listenerChannel.onmessage = this.onmessage
         }
     })
 </script>
