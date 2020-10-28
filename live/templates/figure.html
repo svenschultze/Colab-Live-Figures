@@ -6,15 +6,19 @@
 </div>
 
 <style>
+    #app {
+        float: left;
+        margin: 5px;
+        width: {WIDTH}%;
+    }
+
     #app img {
         image-rendering: pixelated;
-        width: {WIDTH}%;
+        width: 100%;
     }
 </style>
 
 <script>
-    const listenerChannel = new BroadcastChannel('{CHANNEL}');
-
     new Vue({
         el: '#app',
         data: {
@@ -26,6 +30,7 @@
             }
         },
         created() {
+            listenerChannel = new BroadcastChannel('{CHANNEL}');
             listenerChannel.onmessage = this.onmessage
         }
     })
