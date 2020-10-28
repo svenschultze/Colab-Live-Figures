@@ -68,3 +68,5 @@ for i in range(10):
     live.figshow(fig)
     time.sleep(.5)
 ```
+
+<img width="40%" src="https://github.com/svenschultze/Colab-Live-Figures/blob/main/demo/matplotlib.gif?raw=true"/>
