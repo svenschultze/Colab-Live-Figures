@@ -25,7 +25,7 @@ def imshow(img, width=30):
 def get_current_context():
     for frame in inspect.stack():
         if "ipython-input" in frame.filename:
-            return inspect.stack()[0].filename
+            return frame.filename
     
     return None
 
