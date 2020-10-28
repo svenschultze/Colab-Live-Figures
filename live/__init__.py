@@ -42,6 +42,6 @@ def figshow(fig, width=30):
     canvas = FigureCanvas(fig)
     canvas.draw()
 
-    fig_shape = fig.get_size_inches() * fig.get_dpi()
-    image = np.frombuffer(canvas.tostring_rgb(), dtype='uint8').reshape(*fig_shape.astype(np.int32), 3)
+    fig_width, fig_height = (fig.get_size_inches() * fig.get_dpi()).astype(np.int32)
+    image = np.frombuffer(canvas.tostring_rgb(), dtype='uint8').reshape(fig_height, fig_width, 3)
     imshow(image, width)
