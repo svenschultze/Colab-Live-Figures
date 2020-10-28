@@ -36,6 +36,9 @@ class Figure():
         if len(img.shape) == 3:
             img = np.flip(img, axis=2)
 
+        if img.dtype == np.floating:
+            img = (img * 255).astype(np.uint8)
+
         byte_array = cv2.imencode('.jpg', img)[1]
         base64_url = base64.b64encode(byte_array).decode("utf-8")
 
