@@ -33,7 +33,7 @@ fig.repeat(shape=(300, 300), fps=10)
 
 Display video (4d numpy array) as GIF:
 ```python
-fig.vidshow(vid)
+fig.vidshow(vid, fps=10)
 ```
 
 ### Create figure automatically
