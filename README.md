@@ -26,6 +26,11 @@ Matplotlib integration:
 fig.figshow(pyplot_figure)
 ```
 
+Display video (4d numpy array) as GIF:
+```python
+fig.vidshow(vid)
+```
+
 ### Create figure automatically
 ```python
 live.imshow(img)
@@ -34,6 +39,11 @@ live.imshow(img)
 Matplotlib integration:
 ```python
 live.figshow(pyplot_figure)
+```
+
+Display video (4d numpy array) as GIF:
+```python
+live.vidshow(vid)
 ```
 
 ## Examples
@@ -125,3 +135,13 @@ for i in range(35):
     time.sleep(.5)
 ```
 <img width="30%" src="https://github.com/svenschultze/Colab-Live-Figures/blob/main/demo/conway.gif?raw=true"/>
+
+```python
+import live
+import numpy as np
+
+vid = np.random.randint(0, 255, (10, 15, 15, 3), dtype=np.uint8)
+live.vidshow(vid)
+```
+
+<img width="30%" src="https://github.com/svenschultze/Colab-Live-Figures/blob/main/demo/vid.gif?raw=true"/>
