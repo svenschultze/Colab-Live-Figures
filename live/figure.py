@@ -71,7 +71,7 @@ class Figure():
         rgb_imgs = [cv2.cvtColor(img, cv2.COLOR_GRAY2RGB) if len(img.shape) == 2 else img for img in self.memory]
 
         if shape is None:
-            memory_shapes = [img.shape[:2] for img in rgb_imgs]
+            memory_shapes = [(img.shape[1], img.shape[0]) for img in rgb_imgs]
             shape = Counter(memory_shapes).most_common(1)[0][0]
 
         vid = np.array([cv2.resize(img, shape, interpolation=cv2.INTER_NEAREST) for img in rgb_imgs])
