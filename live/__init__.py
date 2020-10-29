@@ -21,6 +21,10 @@ def imshow(img, width=30):
     fig = figure(width=width)
     fig.imshow(img)
 
+def vidshow(vid, width=30):
+    fig = figure(width=width)
+    fig.vidshow(vid)
+
 def get_current_context():
     for frame in inspect.stack():
         if "ipython-input" in frame.filename:
