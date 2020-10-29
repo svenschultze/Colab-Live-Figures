@@ -104,7 +104,7 @@ START = (
 )
 
 def neighbors(c):
-    n = (NEIGHBOURS + c) % MAP_SIZE
+    n = (NEIGHBORS + c) % MAP_SIZE
     return {(x, y) for x, y in n}
 
 map = np.zeros((MAP_SIZE, MAP_SIZE), dtype=np.uint8)
