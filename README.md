@@ -85,3 +85,43 @@ for i in range(1, 21, 2):
 ```
 
 <img width="40%" src="https://github.com/svenschultze/Colab-Live-Figures/blob/main/demo/blur.gif?raw=true"/>
+
+
+```python
+import live
+import time
+import numpy as np
+
+MAP_SIZE = 10
+NEIGHBORS = np.array([
+    (-1, -1), (-1, 0), (-1, 1),
+    ( 0, -1),          ( 0, 1),
+    ( 1, -1), ( 1, 0), ( 1, 1)
+])
+START = (
+    (3, 4, 5, 5, 5), 
+    (3, 4, 4, 3, 2)
+)
+
+def neighbors(c):
+    n = (NEIGHBOURS + c) % MAP_SIZE
+    return {(x, y) for x, y in n}
+
+map = np.zeros((MAP_SIZE, MAP_SIZE), dtype=np.uint8)
+map[START] = 1
+
+for i in range(35):
+    live.imshow(map * 255)
+
+    new_map = np.zeros_like(map)
+    for c, alive in np.ndenumerate(map):
+        population = sum(map[xn, yn] for xn, yn in neighbors(c))
+        if alive and population in [2, 3]:
+            new_map[c] = 1
+        elif not alive and population == 3:
+            new_map[c] = 1
+
+    map = new_map    
+    time.sleep(.5)
+```
+<img width="30%" src="https://github.com/svenschultze/Colab-Live-Figures/blob/main/demo/conway.gif?raw=true"/>
