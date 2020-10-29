@@ -21,9 +21,13 @@ def imshow(img, width=30):
     fig = figure(width=width)
     fig.imshow(img)
 
-def vidshow(vid, width=30):
+def vidshow(vid, width=30, fps=10):
     fig = figure(width=width)
-    fig.vidshow(vid)
+    fig.vidshow(vid, fps)
+
+def repeat(shape=None, fps=10):
+    fig = figure()
+    fig.repeat(shape, fps)
 
 def get_current_context():
     for frame in inspect.stack():

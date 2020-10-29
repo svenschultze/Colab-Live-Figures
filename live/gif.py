@@ -3,21 +3,22 @@ import cv2
 import uuid
 import os
 import base64
+import numpy as np
 
-def save_video_to_file(file, vid):
-    writer = cv2.VideoWriter(file.name,  cv2.VideoWriter_fourcc('M','J','P','G'), 10, (15, 15))
+def save_video_to_file(file, vid, fps):
+    writer = cv2.VideoWriter(file.name,  cv2.VideoWriter_fourcc('M','J','P','G'), fps, vid.shape[1:3])
     for img in vid:
-        writer.write(img)
+        writer.write(np.flip(img, axis=2))
     writer.release()
 
 def convert(input, output):
     ffmpeg.input(input).output(output).run()
 
-def video_to_gif(vid):
+def video_to_gif(vid, fps=10):
     filename = uuid.uuid4()
 
     with open(f"/tmp/{filename}.avi", "w") as avi:
-        save_video_to_file(avi, vid)
+        save_video_to_file(avi, vid, fps)
 
     ffmpeg.input(f"/tmp/{filename}.avi").output(f"/tmp/{filename}.gif").run()
 
