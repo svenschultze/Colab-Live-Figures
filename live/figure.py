@@ -40,14 +40,14 @@ class Figure():
         elif len(img.shape) == 3 and img.shape[-1] not in {1, 3}:
             raise ValueError(f"Expected image to have 1 or 3 channels, but got {img.shape[-1]}")
 
+        if img.dtype == np.floating:
+            img = (img * 255).astype(np.uint8)
+
         if self.memory_enabled:
             self.memory.append(img)
 
         if len(img.shape) == 3:
             img = np.flip(img, axis=2)
-
-        if img.dtype == np.floating:
-            img = (img * 255).astype(np.uint8)
 
         byte_array = cv2.imencode('.jpg', img)[1]
         base64_url = base64.b64encode(byte_array).decode("utf-8")
