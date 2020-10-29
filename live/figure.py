@@ -40,6 +40,9 @@ class Figure():
         elif len(img.shape) == 3 and img.shape[-1] not in {1, 3}:
             raise ValueError(f"Expected image to have 1 or 3 channels, but got {img.shape[-1]}")
 
+        if self.memory_enabled:
+            self.memory.append(img)
+
         if len(img.shape) == 3:
             img = np.flip(img, axis=2)
 
@@ -50,10 +53,6 @@ class Figure():
         base64_url = base64.b64encode(byte_array).decode("utf-8")
 
         live.broadcast(channel=self.name, message=base64_url)
-        
-        if self.memory_enabled:
-            self.memory.append(img)
-
 
     def vidshow(self, vid, fps=10):
         if len(vid.shape) != 4:
