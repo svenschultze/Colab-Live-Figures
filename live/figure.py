@@ -74,7 +74,7 @@ class Figure():
             memory_shapes = [img.shape[:2] for img in rgb_imgs]
             shape = Counter(memory_shapes).most_common(1)[0][0]
 
-        vid = np.array([cv2.resize(img, shape) for img in rgb_imgs])
+        vid = np.array([cv2.resize(img, shape, interpolation=cv2.INTER_NEAREST) for img in rgb_imgs])
         self.vidshow(vid, fps)
 
     def figshow(self, fig):
