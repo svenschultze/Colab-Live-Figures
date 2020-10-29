@@ -23,6 +23,7 @@ setuptools.setup(
     zip_safe=False,
     install_requires=[
         'numpy',
-        'opencv-python'
+        'opencv-python',
+        'ffmpeg-python'
     ]
 )

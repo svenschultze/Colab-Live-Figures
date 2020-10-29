@@ -6,7 +6,6 @@ import inspect
 
 from live.figure import Figure
 
-
 broadcast_template = pkgutil.get_data(__name__, "templates/broadcast.js").decode("utf-8")
 
 figures = {}

@@ -7,6 +7,7 @@ import numpy as np
 import re
 
 import live
+import live.gif
 
 figure_template = pkgutil.get_data(__name__, "templates/figure.html").decode("utf-8")
 
@@ -40,11 +41,21 @@ class Figure():
         if img.dtype == np.floating:
             img = (img * 255).astype(np.uint8)
 
+        
+
         byte_array = cv2.imencode('.jpg', img)[1]
         base64_url = base64.b64encode(byte_array).decode("utf-8")
 
         live.broadcast(channel=self.name, message=base64_url)
 
+    def vidshow(self, vid):
+        if len(vid.shape) != 4:
+            raise ValueError(f"Expected video to have 4 dimensions, but got {len(vid.shape)}")
+        if vid.shape[-1] != 3:
+            raise ValueError(f"Expected video to have 3 channels, but got {vid.shape[-1]}")
+
+        base64_url = live.gif.video_to_gif(vid)
+        live.broadcast(channel=self.name, message=base64_url)
 
     def figshow(self, fig):
         canvas = FigureCanvas(fig)
