@@ -10,19 +10,19 @@ broadcast_template = pkgutil.get_data(__name__, "templates/broadcast.js").decode
 
 figures = {}
 
-def figure(name=None, width=30):
+def figure(name=None, width=30, memory_enabled=True):
     context = get_current_context()
     if context not in figures.keys():
-        figures[context] = Figure(name, width)
+        figures[context] = Figure(name, width, memory_enabled)
 
     return figures[context]
 
-def imshow(img, width=30):
-    fig = figure(width=width)
+def imshow(img, width=30, memory_enabled=True):
+    fig = figure(width=width, memory_enabled=memory_enabled)
     fig.imshow(img)
 
 def vidshow(vid, width=30, fps=10):
-    fig = figure(width=width)
+    fig = figure(width=width, memory_enabled=False)
     fig.vidshow(vid, fps)
 
 def repeat(shape=None, fps=10):

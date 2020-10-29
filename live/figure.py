@@ -61,7 +61,7 @@ class Figure():
         if vid.shape[-1] != 3:
             raise ValueError(f"Expected video to have 3 channels, but got {vid.shape[-1]}")
 
-        base64_url = live.gif.video_to_gif(fps)
+        base64_url = live.gif.video_to_gif(vid, fps)
         live.broadcast(channel=self.name, message=base64_url)
 
     def repeat(self, shape=None, fps=10):
