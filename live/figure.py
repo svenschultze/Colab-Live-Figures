@@ -68,8 +68,9 @@ class Figure():
         if not self.memory:
             raise ValueError(f"No figures in memory.")
 
+        rgb_imgs = [cv2.cvtColor(img, cv2.COLOR_GRAY2RGB) if len(img.shape) == 2 else img for img in self.memory]
+
         if shape is None:
-            rgb_imgs = [cv2.cvtColor(img, cv2.COLOR_GRAY2RGB) if len(img.shape) == 2 else img for img in self.memory]
             memory_shapes = [img.shape[:2] for img in rgb_imgs]
             shape = Counter(memory_shapes).most_common(1)[0][0]
 
