@@ -6,7 +6,7 @@ import base64
 import numpy as np
 
 def save_video_to_file(file, vid, fps):
-    writer = cv2.VideoWriter(file.name,  cv2.VideoWriter_fourcc('M','J','P','G'), fps, vid.shape[1:3])
+    writer = cv2.VideoWriter(file.name,  cv2.VideoWriter_fourcc('M','J','P','G'), fps, (vid.shape[2], vid.shape[1]))
     for img in vid:
         writer.write(np.flip(img, axis=2))
     writer.release()
