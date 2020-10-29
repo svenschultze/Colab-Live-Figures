@@ -38,12 +38,12 @@ fig.vidshow(vid)
 
 ### Create figure automatically
 ```python
-live.imshow(img)
+live.imshow(img, width=30)
 ```
 
 Matplotlib integration:
 ```python
-live.figshow(pyplot_figure)
+live.figshow(pyplot_figure, width=30)
 ```
 
 Create GIF of size (300, 300) with 10fps from previous imshow's and display:
@@ -53,7 +53,7 @@ live.repeat(shape=(300, 300), fps=10)
 
 Display video (4d numpy array) as GIF:
 ```python
-live.vidshow(vid)
+live.vidshow(vid, width=30, fps=10)
 ```
 
 ## Examples
