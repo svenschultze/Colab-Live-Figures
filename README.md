@@ -26,9 +26,9 @@ Matplotlib integration:
 fig.figshow(pyplot_figure)
 ```
 
-Create GIF from previous imshow's and display:
+Create GIF of size (300, 300) with 10fps from previous imshow's and display:
 ```python
-fig.repeat(shape=(300, 300))
+fig.repeat(shape=(300, 300), fps=10)
 ```
 
 Display video (4d numpy array) as GIF:
@@ -46,9 +46,9 @@ Matplotlib integration:
 live.figshow(pyplot_figure)
 ```
 
-Create GIF from previous imshow's and display:
+Create GIF of size (300, 300) with 10fps from previous imshow's and display:
 ```python
-live.repeat(shape=(300, 300))
+live.repeat(shape=(300, 300), fps=10)
 ```
 
 Display video (4d numpy array) as GIF:
