@@ -9,8 +9,9 @@ from collections import Counter
 
 import live
 import live.gif
+import live.renderer
 
-figure_template = pkgutil.get_data(__name__, "templates/figure.html").decode("utf-8")
+#figure_template = pkgutil.get_data(__name__, "templates/figure.html").decode("utf-8")
 
 class Figure():
     figure_index = 0
@@ -23,12 +24,7 @@ class Figure():
         self.name = re.sub(r'[^a-zA-Z0-9_]', '', name)
         Figure.figure_index += 1
 
-        html = figure_template.replace(
-            "{WIDTH}", str(width)
-        ).replace(
-            "{CHANNEL}", self.name
-        )
-        display(HTML(html))
+        live.renderer.listen(self.name, width)
 
         self.memory_enabled = memory_enabled
         if memory_enabled:
@@ -52,7 +48,7 @@ class Figure():
         byte_array = cv2.imencode('.jpg', img)[1]
         base64_url = base64.b64encode(byte_array).decode("utf-8")
 
-        live.broadcast(channel=self.name, message=base64_url)
+        live.renderer.broadcast(self.name, 'data:image/jpg;base64,' + base64_url)
 
     def vidshow(self, vid, fps=10):
         if len(vid.shape) != 4:
@@ -61,7 +57,7 @@ class Figure():
             raise ValueError(f"Expected video to have 3 channels, but got {vid.shape[-1]}")
 
         base64_url = live.gif.video_to_gif(vid, fps)
-        live.broadcast(channel=self.name, message=base64_url)
+        live.renderer.broadcast(self.name, 'data:image/gif;base64,' + base64_url)
 
     def repeat(self, shape=None, fps=10):
         if not self.memory:
