@@ -11,8 +11,6 @@ import live
 import live.gif
 import live.renderer
 
-#figure_template = pkgutil.get_data(__name__, "templates/figure.html").decode("utf-8")
-
 class Figure():
     figure_index = 0
 

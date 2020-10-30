@@ -1,12 +1,9 @@
-import pkgutil
 from IPython.display import display, Javascript
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import numpy as np
 import inspect
 
 from live.figure import Figure
-
-broadcast_template = pkgutil.get_data(__name__, "templates/broadcast.js").decode("utf-8")
 
 figures = {}
 
@@ -35,15 +32,6 @@ def get_current_context():
             return frame.filename
     
     return None
-
-def broadcast(channel, message):
-    js = broadcast_template.replace(
-        "{CHANNEL}", channel
-    ).replace(
-        "{MESSAGE}", message
-    )
-
-    display(Javascript(js))
 
 def figshow(fig, width=30):
     canvas = FigureCanvas(fig)
