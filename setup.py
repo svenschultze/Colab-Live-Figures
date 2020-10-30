@@ -19,11 +19,10 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
-    include_package_data=True,
-    zip_safe=False,
     install_requires=[
         'numpy',
         'opencv-python',
-        'ffmpeg-python'
+        'ffmpeg-python',
+        'google-colab'
     ]
 )
