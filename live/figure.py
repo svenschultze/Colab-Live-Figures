@@ -3,7 +3,7 @@ from IPython.display import display, HTML
 import cv2
 import base64
 import io
-import skimage
+import skimage.io
 import matplotlib.pyplot as plt
 import numpy as np
 import re
