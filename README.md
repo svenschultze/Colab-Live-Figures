@@ -23,7 +23,7 @@ fig.imshow(img)
 
 Matplotlib integration:
 ```python
-fig.figshow(pyplot_figure)
+fig.figshow()
 ```
 
 Create GIF of size (300, 300) with 10fps from previous imshow's and display:
@@ -43,7 +43,7 @@ live.imshow(img, width=30)
 
 Matplotlib integration:
 ```python
-live.figshow(pyplot_figure, width=30)
+live.figshow(width=30)
 ```
 
 Create GIF of size (300, 300) with 10fps from previous imshow's and display:
@@ -81,12 +81,13 @@ import matplotlib.pyplot as plt
 for i in range(10):
     x, y = np.random.randint(0, 100, (2, 100))
 
-    fig = plt.Figure(dpi=200)
-    ax = fig.gca()
-    ax.scatter(x, y)
+    plt.figure(dpi=100)
+    plt.scatter(x, y, c=np.random.rand(len(x), 3))
 
-    live.figshow(fig)
-    time.sleep(.5)
+    live.figshow(width=50)
+    time.sleep(1)
+
+live.repeat(fps=5)
 ```
 
 <img width="40%" src="https://github.com/svenschultze/Colab-Live-Figures/blob/main/demo/matplotlib.gif?raw=true"/>
