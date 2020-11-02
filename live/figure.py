@@ -78,6 +78,7 @@ class Figure():
 
         buf = io.BytesIO()
         fig.savefig(buf, format='jpg')
+        plt.close()
         buf.seek(0)
         img = skimage.io.imread(buf)
         self.imshow(img)
