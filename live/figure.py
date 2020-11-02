@@ -2,7 +2,9 @@ import pkgutil
 from IPython.display import display, HTML
 import cv2
 import base64
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+import io
+import skimage
+import matplotlib.pyplot as plt
 import numpy as np
 import re
 from collections import Counter
@@ -70,10 +72,12 @@ class Figure():
         vid = np.array([cv2.resize(img, shape, interpolation=cv2.INTER_NEAREST) for img in rgb_imgs])
         self.vidshow(vid, fps)
 
-    def figshow(self, fig):
-        canvas = FigureCanvas(fig)
-        canvas.draw()
+    def figshow(self, fig=None):
+        if fig is not None:
+            fig = plt.gcf()
 
-        width, height = fig.get_size_inches() * fig.get_dpi()
-        image = np.frombuffer(canvas.tostring_rgb(), dtype='uint8').reshape(int(height), int(width), 3)
-        self.imshow(image)
+        buf = io.BytesIO()
+        fig.savefig(buf, format='jpg')
+        buf.seek(0)
+        img = skimage.io.imread(buf)
+        self.imshow(img)

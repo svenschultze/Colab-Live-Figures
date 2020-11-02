@@ -18,6 +18,10 @@ def imshow(img, width=30, memory_enabled=True):
     fig = figure(width=width, memory_enabled=memory_enabled)
     fig.imshow(img)
 
+def figshow(fig=None, width=30, memory_enabled=True):
+    fig = figure(width=width, memory_enabled=memory_enabled)
+    fig.figshow(fig)
+
 def vidshow(vid, width=30, fps=10):
     fig = figure(width=width, memory_enabled=False)
     fig.vidshow(vid, fps)
@@ -32,11 +36,3 @@ def get_current_context():
             return frame.filename
     
     return None
-
-def figshow(fig, width=30):
-    canvas = FigureCanvas(fig)
-    canvas.draw()
-
-    fig_width, fig_height = (fig.get_size_inches() * fig.get_dpi()).astype(np.int32)
-    image = np.frombuffer(canvas.tostring_rgb(), dtype='uint8').reshape(fig_height, fig_width, 3)
-    imshow(image, width)
